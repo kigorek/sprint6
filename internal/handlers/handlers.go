@@ -1,9 +1,13 @@
 package handlers
 
-func HandleRoot() {
+import "net/http"
 
+func HandleRoot(w http.ResponseWriter, r *http.Request) {
+	s := ""
+	w.Write([]byte(s))
 }
 
-func UploadHandle() {
-
+func UploadHandle(w http.ResponseWriter, r *http.Request) {
+	s := ""
+	w.Write([]byte(s))
 }
