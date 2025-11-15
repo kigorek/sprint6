@@ -1,16 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/service"
+	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/server"
 )
 
-var text = ".--. .-. .. .-- . -"
-
-//var text = "Привет"
-
 func main() {
-	conv, _ := service.MorseOrText(text)
-	fmt.Println(conv)
+	logger := log.New(log.Writer(), "sprint6: ", log.LstdFlags)
+
+	srv := server.NewHTTPServer(logger)
+	if err := srv.Start(); err != nil {
+		logger.Fatal(err)
+	}
+
 }
