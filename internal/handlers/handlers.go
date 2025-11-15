@@ -61,7 +61,13 @@ func HandleUpload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	convertedText, _ := service.MorseOrText(string(data))
+	convertedText, err := service.MorseOrText(string(data))
+	if err != nil {
+		log.Printf("error conversion: %v", err)
+		http.Error(w, "error conversion", http.StatusInternalServerError)
+		return
+	}
+
 	timestamp := time.Now().UTC().Format("20060102-150405")
 
 	fileName := filepath.Join("result", timestamp+".txt")
